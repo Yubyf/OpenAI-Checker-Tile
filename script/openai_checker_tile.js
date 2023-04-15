@@ -1,9 +1,3 @@
-const HttpClient = require('./statsh_http_dev.js');
-const $httpClient = new HttpClient();
-const $done = (panel) => {
-    console.log(panel);
-}
-
 /**
  * @description: Check if the current IP supported by OpenAI for Stash 2.0.
  * @author: Yubyf
@@ -51,7 +45,7 @@ const SUPPORT_COUNTRY = ["AL", "DZ", "AD", "AO", "AG", "AR", "AM", "AU", "AT", "
     panel = {
         title: title,
         content: content,
-        icon: "https://raw.githubusercontent.com/Yubyf/OpenAI-Checker-Tile/master/logo.png",
+        icon: "https://raw.githubusercontent.com/Yubyf/OpenAI-Checker-Tile/master/res/logo.png",
         backgroundColor: '#4AA081',
     }
     $done(panel);

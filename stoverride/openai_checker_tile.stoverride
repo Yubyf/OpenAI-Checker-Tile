@@ -7,5 +7,5 @@ tiles:
 
 script-providers:
   OpenAI-Checker-Tile:
-    url: https://raw.githubusercontent.com/Yubyf/OpenAI-Checker-Tile/master/openai_checker_tile.js
+    url: https://raw.githubusercontent.com/Yubyf/OpenAI-Checker-Tile/master/script/openai_checker_tile.js
     interval: 86400
