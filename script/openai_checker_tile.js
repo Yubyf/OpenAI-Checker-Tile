@@ -18,28 +18,32 @@ const SUPPORT_COUNTRY = ["AL", "DZ", "AD", "AO", "AG", "AR", "AM", "AU", "AT", "
     console.log('------------');
     console.log('Start checking');
 
-    let title = 'OpenAI Checker';
-    let content = 'Check failed, try again later';
+    let title = '𝗢𝗽𝗲𝗻𝗔𝗜 𝗖𝗵𝗲𝗰𝗸𝗲𝗿';
+    let content = 'Check failed, try again';
 
     try {
         let [{
             success,
             message
         }] = await Promise.all([checkMainUrl()]);
-        if (success) {
-            let [{ support, ipAddress, location, organization }] = await Promise.all([checkTrace()])
-            const flagEmoji = countryCodeToEmoji(location);
-            if (support) {
-                title = `OpenAI is AVALIABLE`;
-            } else {
-                title = `OpenAI is NOT AVALIABLE`;
-            }
-            content = `IP: ${ipAddress} - ${flagEmoji}${location}\nOrganization: ${organization}`
-        } else {
-            content = message;
+        let [{ support, ipAddress, location, organization }] = await Promise.all([checkTrace()])
+        let countryCode = location;
+        if (countryCode.toUpperCase() === "TW") {
+            countryCode = "CN";
         }
+        const flagEmoji = countryCodeToEmoji(countryCode);
+        if (success) {
+            if (support) {
+                title = '𝗢𝗽𝗲𝗻𝗔𝗜 𝗔𝗩𝗔𝗟𝗜𝗔𝗕𝗟𝗘';
+            } else {
+                title = '𝗢𝗽𝗲𝗻𝗔𝗜 𝗡𝗢𝗧 𝗔𝗩𝗔𝗟𝗜𝗔𝗕𝗟𝗘';
+            }
+        } else {
+            title = message;
+        }
+        content = `IP: ${ipAddress} - ${flagEmoji}${location}\nOrganization: ${organization}`
     } catch (error) {
-        content = 'Check failed, try again later';
+        console.log(`Error: ${error}`);
     }
     console.log(`Display panel content - ${content}`)
     panel = {
@@ -65,7 +69,7 @@ async function checkMainUrl() {
                 console.log('Main url check failed')
                 resolve({
                     success: false,
-                    message: 'Your IP is BLOCKED!'
+                    message: '𝗢𝗽𝗲𝗻𝗔𝗜 𝗕𝗟𝗢𝗖𝗞𝗘𝗗 𝗬𝗼𝘂𝗿 𝗜𝗣'
                 })
             } else {
                 console.log('Main url check success')
@@ -112,16 +116,20 @@ async function checkTrace() {
             if (result) {
                 let isSupport = SUPPORT_COUNTRY.includes(result.location);
                 await checkGeoIp(result.ipAddress).then((organization) => {
+                    let ipAddress = result.ipAddress;
+                    if (ipAddress.length > 16) {
+                        ipAddress = ipAddress.substring(0, 16) + '...'
+                    }
                     traceResult = {
                         support: isSupport,
-                        ipAddress: result.ipAddress,
+                        ipAddress: ipAddress,
                         location: result.location,
                         organization: organization
                     };
                 }).catch(() => {
                     traceResult = {
                         support: isSupport,
-                        ipAddress: result.ipAddress,
+                        ipAddress: ipAddress,
                         location: result.location,
                         organization: 'Unknown'
                     };

@@ -4,6 +4,10 @@ desc: The tile to check if your IP can access OpenAI services.(Stash 2.0)
 tiles:
   - name: OpenAI-Checker-Tile
     interval: 7200
+    title: '𝗢𝗽𝗲𝗻𝗔𝗜 𝗖𝗵𝗲𝗰𝗸𝗲𝗿'
+    content: 'IP: ...\nOrganization: ...'
+    icon: 'https://raw.githubusercontent.com/Yubyf/OpenAI-Checker-Tile/master/res/logo.png'
+    backgroundColor: '#4AA081'
 
 script-providers:
   OpenAI-Checker-Tile:
