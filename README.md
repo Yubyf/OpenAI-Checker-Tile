@@ -1,4 +1,4 @@
-# OpenAI IP Checker Tile
+# OpenAI Checker Tile
 
 Stash 2.0 tile to check if your IP can access OpenAI services.
 
