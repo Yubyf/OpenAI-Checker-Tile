@@ -5,7 +5,7 @@ tiles:
   - name: OpenAI-Checker-Tile
     interval: 7200
     title: '𝗢𝗽𝗲𝗻𝗔𝗜 𝗖𝗵𝗲𝗰𝗸𝗲𝗿'
-    content: 'IP: ...\nOrganization: ...'
+    content: 'Loading...'
     icon: 'https://raw.githubusercontent.com/Yubyf/OpenAI-Checker-Tile/master/res/logo.png'
     backgroundColor: '#4AA081'
 
